@@ -1,0 +1,87 @@
+# Coleta de dados (valores fictícios para fins de demonstração)
+anos = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023]
+energia_eolica = [3.7, 4.5, 5.3, 6.2, 7.1, 8.2, 10.5, 11.8, 13.0]  # em %
+energia_solar = [0.01, 0.05, 0.1, 0.5, 1.0, 2.3, 3.5, 5.2, 7.3]     # em %
+
+# Importando as bibliotecas necessárias
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+import numpy as np
+
+# Gráfico de Linha - Crescimento da Energia Eólica e Solar
+plt.figure(figsize=(10, 5))
+plt.plot(anos, energia_eolica, marker='o', label='Energia Eólica')
+plt.plot(anos, energia_solar, marker='o', label='Energia Solar')
+plt.title('Crescimento da Energia Eólica e Solar no Brasil (2015-2023)')
+plt.xlabel('Ano')
+plt.ylabel('Percentual da Matriz Energética (%)')
+plt.legend()
+plt.grid(True)
+
+# Descrição do gráfico de linha
+plt.figtext(0.5, -0.1, 'O gráfico mostra o crescimento da energia eólica e solar como percentual da matriz energética no Brasil ao longo dos anos de 2015 a 2023. A energia eólica (em azul) e a energia solar (em laranja) são representadas como séries temporais, destacando seus incrementos anuais.', wrap=True, horizontalalignment='center', fontsize=10)
+
+plt.show()
+
+# Gráfico 3D de Barras - Crescimento da Energia Eólica e Solar
+fig = plt.figure(figsize=(10, 7))
+ax = fig.add_subplot(111, projection='3d')
+
+# Dados para plotagem
+xpos = np.arange(len(anos))
+ypos_eolica = np.ones(len(anos)) * 1.2  # Coloca a energia eólica na frente
+ypos_solar = np.zeros(len(anos))
+zpos = np.zeros(len(anos))
+dx = dy = 0.6  # Espaçamento entre as barras
+
+# Alturas das barras
+dz_eolica = energia_eolica
+dz_solar = energia_solar
+
+# Plotando as barras para energia eólica e energia solar
+ax.bar3d(xpos, ypos_eolica, zpos, dx, dy, dz_eolica, color='b', label='Energia Eólica')
+ax.bar3d(xpos, ypos_solar, zpos, dx, dy, dz_solar, color='r', label='Energia Solar')
+
+ax.set_xlabel('Ano')
+ax.set_ylabel('Tipo de Energia')
+ax.set_zlabel('Percentual da Matriz Energética (%)')
+ax.set_title('Crescimento da Energia Eólica e Solar no Brasil (2015-2023)')
+
+# Descrição do gráfico de barras 3D
+ax.text2D(0.5, -0.15, 'O gráfico 3D de barras mostra o crescimento da energia eólica (em azul) e solar (em vermelho) como percentual da matriz energética no Brasil ao longo dos anos de 2015 a 2023. Cada barra representa um ano, com a energia eólica à frente para melhor visualização.', wrap=True, horizontalalignment='center', fontsize=10, transform=ax.transAxes)
+
+ax.set_xticks(xpos + dx / 2)
+ax.set_xticklabels(anos)
+ax.legend()
+
+plt.show()
+
+# Gráfico de Superfície - Montanha Simulada
+fig = plt.figure(figsize=(10, 7))
+ax = fig.add_subplot(111, projection='3d')
+
+# Convertendo para arrays numpy para o gráfico de superfície
+X, Y = np.meshgrid(anos, np.arange(0, 101, 10))
+
+# Simulação de uma montanha para energia eólica
+Z_eolica = np.outer(np.sin(np.linspace(0, 2*np.pi, len(anos))), np.linspace(0, 1, 11)) * 13
+# Simulação de uma montanha para energia solar
+Z_solar = np.outer(np.cos(np.linspace(0, 2*np.pi, len(anos))), np.linspace(0, 1, 11)) * 7.3
+
+# Plotando a superfície para a energia eólica
+surf1 = ax.plot_surface(X, Y, Z_eolica.T, cmap='viridis', linewidth=0.5, alpha=0.8)
+
+# Plotando a superfície para a energia solar
+surf2 = ax.plot_surface(X, Y, Z_solar.T, cmap='plasma', linewidth=0.5, alpha=0.8)
+
+ax.set_xlabel('Ano')
+ax.set_ylabel('Percentual da Matriz Energética (%)')
+ax.set_zlabel('Energia')
+ax.set_title('Crescimento da Energia Eólica e Solar no Brasil (2015-2023)')
+
+# Descrição do gráfico de superfície
+ax.text2D(0.5, -0.15, 'O gráfico de superfície mostra simulações de montanhas para a energia eólica (em cores viridis) e solar (em cores plasma) como percentual da matriz energética no Brasil ao longo dos anos de 2015 a 2023. Cada "montanha" representa o crescimento anual das respectivas fontes energéticas.', wrap=True, horizontalalignment='center', fontsize=10, transform=ax.transAxes)
+
+ax.legend(['Energia Eólica', 'Energia Solar'])
+
+plt.show()
