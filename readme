@@ -1,0 +1,10 @@
+Este projeto tem como objetivo analisar os dados sobre o crescimento da energia renovável no Brasil, com foco nas energias solar e eólica, utilizando gráficos para apresentar as tendências e comparações. Utilizaremos dados do relatório Global Electricity Review 2024 e outras fontes mencionadas no artigo do CicloVivo para criar gráficos 2D e 3D, incluindo gráficos interativos para uma melhor visualização e análise dos dados.
+
+Etapas do Projeto
+Coleta de Dados: Obter dados sobre a geração de energia renovável no Brasil, incluindo energia solar e eólica.
+
+Limpeza de Dados: Processar os dados para garantir que estejam prontos para análise.
+
+Visualização dos Dados: Criar diversos gráficos, incluindo gráficos 3D interativos, para visualizar o crescimento das energias renováveis no Brasil.
+
+Análise dos Resultados: Interpretar os gráficos para identificar tendências e insights importantes.
